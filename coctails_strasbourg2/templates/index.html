@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block body %}
+    <h1>{% trans "Welcome to the Cocktails site!" %}</h1>
+    <p>Cliquez
+        <a href="{% url 'cocktails_list' %}">ici</a>
+        pour voir tous nos cocktails !</p>
+    {% if not user.is_authenticated %}
+        <a href="{% url 'login' %}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+            <span class="text">{%  trans "Login" %}</span>
+        </a>
+        {% else %}
+        {% trans "Hello, " %} {{ user.username }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block body %}
+
+
+    <h1>{{ object.title }}</h1>
+    <h2>{{ object.description }}</h2>
+
+    {{ object.content|safe }}
+    <a href="{% url 'cocktails_list' %}">Retour</a>
+{% endblock %}

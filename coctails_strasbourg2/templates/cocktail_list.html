@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block body %}
+
+    <ul>
+        {% for object in object_list %}
+            <li>{{ object.detail }}
+                <a href="{% url 'cocktails_detail' object.pk %}">
+                    &raquo; &raquo;</a>
+            </li>
+        {%  empty %}
+            <li>{% trans "No cocktail found" %}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'cocktails_create' %}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </span>
+        <span class="text">{%  trans "Create" %}</span>
+    </a>
+
+    <a href="{% url 'index' %}" class="btn btn-secondary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </span>
+        <span class="text">{%  trans "Back" %}</span>
+    </a>
+
+{% endblock %}

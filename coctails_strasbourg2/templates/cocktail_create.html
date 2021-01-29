@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block body %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+            <p>
+                {{ field.label }} &nbsp;:
+                {{  field }}
+                {% if field.errors|length %}
+                    {% for error in form.errors %}
+                        <span class="btn btn-danger text-white shadow">
+                        {{ error }}
+                    {% endfor %}
+                </span>
+                {% endif %}
+            </p>
+        {% endfor %}
+        {% if form.non_field_errors|length %}
+            {% for error in form.non_field_errors %}
+                <span class="btn btn-danger text-white shadow">
+                     {{ error }}
+                    </span>
+            {% endfor %}
+
+
+        {% endif %}
+
+        <button type="submit" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+            <span class="text">Envoyer</span>
+        </button>
+        <a href="{% url 'cocktails_list' %}" class="btn btn-secondary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </span>
+            <span class="text">Retour</span>
+        </a>
+    </form>
+{% endblock %}
